@@ -9,13 +9,9 @@ interface StoryTextProps {
 }
 
 export function StoryText({ rawText }: StoryTextProps) {
-
-    const {
-        setSelectedFile,
-        setSelectedLine
-    } = useContext(SelectedContext)
-
     return (
-        parseMarkdown(rawText)
+        <div className="overflow-y-scroll max-h-full pb-16">
+            {parseMarkdown(rawText)}
+        </div>
     )
 }

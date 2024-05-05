@@ -35,16 +35,15 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
           disableTransitionOnChange
         >
           {children}
+          <div className="fixed bottom-4 left-4">
+            <ModeToggle>    
+            </ModeToggle>
+          </div>
         </ThemeProvider>
-        <div className="fixed bottom-4 left-4">
-          <ModeToggle>    
-          </ModeToggle>
-        </div>
       </body>
     </html>
   );

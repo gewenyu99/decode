@@ -23,7 +23,41 @@ export const mapPrismLanguage = (extension: string) => {
       return 'css';
     case 'json':
       return 'json';
-    // Add more cases for other file extensions and their corresponding Prism language types
+    case 'vue':
+      return 'html';
+    case 'svelte':
+      return 'html';
+    // Add more mappings for other popular languages here
+    case 'java':
+      return 'java';
+    case 'python':
+      return 'python';
+    case 'c':
+      return 'c';
+    case 'cpp':
+      return 'cpp';
+    case 'ruby':
+      return 'ruby';
+    case 'php':
+      return 'php';
+    case 'go':
+      return 'go';
+    case 'rust':
+      return 'rust';
+    case 'swift':
+      return 'swift';
+    case 'kotlin':
+      return 'kotlin';
+    case 'scala':
+      return 'scala';
+    case 'perl':
+      return 'perl';
+    case 'bash':
+      return 'bash';
+    case 'powershell':
+      return 'powershell';
+    case 'r':
+      return 'r';
     default:
       return 'plaintext';
   }

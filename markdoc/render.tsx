@@ -17,16 +17,7 @@ const config: Config = {
       render: "Step",
       description: step.description,
       children: step.children,
-      attributes: {
-        file: {
-          type: String,
-          description: 'The file referenced by this block',
-        },
-        lines: {
-          type: Array, // Change the type declaration from Array<Number> to number[]
-          description: 'The lines referenced by this block',
-        },
-      },
+      attributes: step.attributes,
     },
   },
 };
@@ -41,5 +32,5 @@ export function parseMarkdown(raw: string) {
         CodeBlock: CodeBlock,
       }
      });
-    return html;
+    return <div className='prose dark:prose-invert'>{html}</div>;
 }

@@ -10,7 +10,7 @@ export const step = {
       description: 'The file referenced by this block',
     },
     lines: {
-      type: Array<Number>,
+      type: String,
       description: 'The lines referenced by this block',
     },
   },
