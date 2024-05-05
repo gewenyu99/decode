@@ -16,4 +16,6 @@ Each route renders the markdown of `app/stories/flows/[route-name]/story.md`.
 
 Code referenced by the markdown should be under `app/stories/flows/[route-name]/code/`.
 
-Fine an example under `app/stories/flows/pinia-stores`.
+Find an example under `app/stories/flows/pinia-stores`.
+
+https://github.com/gewenyu99/decode/assets/29069505/6f1e3039-8731-4fc0-966c-b32654e78c32
