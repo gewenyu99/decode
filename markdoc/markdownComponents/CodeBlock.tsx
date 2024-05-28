@@ -26,7 +26,7 @@ export function CodeBlock({ children, language, file}: CodeBlockProps): JSX.Elem
         selectedFile
     } = useContext(SelectedContext)
     const { theme } = useTheme()
-    const [themeUsed, setThemeUsed] = useState(localStorage.getItem('data-theme') || 'dark');
+    const [themeUsed, setThemeUsed] = useState(window.localStorage.getItem('data-theme') || 'dark');
     const highlightColor = 'bg-sky-400/[.2]';
     useEffect(() => {
         setThemeUsed(theme as string);

@@ -17,6 +17,8 @@ export const mapPrismLanguage = (extension: string) => {
       return 'javascript';
     case 'ts':
       return 'typescript';
+    case 'tsx':
+      return 'typescript';
     case 'html':
       return 'html';
     case 'css':
@@ -27,7 +29,6 @@ export const mapPrismLanguage = (extension: string) => {
       return 'html';
     case 'svelte':
       return 'html';
-    // Add more mappings for other popular languages here
     case 'java':
       return 'java';
     case 'python':

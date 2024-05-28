@@ -2,7 +2,7 @@
 import Markdoc from "@markdoc/markdoc";
 import React, { useContext } from "react";
 import { SelectedContext } from "./storyLayout";
-import { parseMarkdown } from "@/markdoc/render";
+import { parseMarkdown } from "@/markdoc/parseMarkdown";
 
 interface StoryTextProps {
     rawText: string;

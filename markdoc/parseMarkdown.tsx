@@ -1,9 +1,10 @@
-"use client";
 import Markdoc, { Config, tags } from '@markdoc/markdoc';
 import { fence } from './nodes/fence.markdoc';
 import { step } from './tags/step.markdoc';
 import React from 'react';
 import { CodeBlock, Step } from './markdownComponents';
+
+import yaml from 'js-yaml'; // or 'toml', etc.
 
 const config: Config = {
   nodes: {
@@ -34,3 +35,22 @@ export function parseMarkdown(raw: string) {
      });
     return <div className='prose dark:prose-invert'>{html}</div>;
 }
+
+export function parseFrontmatter(raw: string): DecodeFrontmatter {
+    const ast = Markdoc.parse(raw);
+    const frontmatter: DecodeFrontmatter = ast.attributes.frontmatter
+    ? yaml.load(ast.attributes.frontmatter) as DecodeFrontmatter
+    : {
+        title: '',
+        date: '',
+        files: [],
+    }; // Add a colon here
+
+    return frontmatter;
+}
+
+export type DecodeFrontmatter = {
+    title: string;
+    date: string;
+    files: string[];
+};

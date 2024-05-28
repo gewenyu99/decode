@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { CodeBlock } from "@/markdoc/markdownComponents/CodeBlock"
 import { getFileExtension, mapPrismLanguage } from "@/markdoc/nodes"
-import { parseMarkdown } from "@/markdoc/render"
+import { parseMarkdown } from "@/markdoc/parseMarkdown"
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { SelectedContext } from "./storyLayout";
 
