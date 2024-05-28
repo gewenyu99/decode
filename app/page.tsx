@@ -1,7 +1,29 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { FormEvent } from "react"
+import { NextApiRequest, NextApiResponse } from "next"
+import { redirect } from "next/navigation"
 
 export default function Component() {
+
+  async function decodeRepo(formData: FormData) {
+    'use server'
+
+    const repoLink = formData.get('repoLink') as string
+    if (!repoLink) return
+
+    const repoUrl = new URL(repoLink)
+  
+    const org = repoUrl.pathname.split('/')[1]
+    const repo = repoUrl.pathname.split('/')[2]
+
+    if (!org || !repo) return
+
+    const branch = repoUrl.pathname.split('/')[4] ?? 'main'
+
+    redirect(`/${org}/${repo}/${branch}`) // Navigate to the new post page
+  }
+
   return (
     <>
       <section className="w-full py-12 md:py-24 lg:py-32">
@@ -12,8 +34,8 @@ export default function Component() {
               <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Enter the GitHub repository link to view the documentation.
               </p>
-              <form className="flex items-center space-x-2">
-                <Input className="flex-1" placeholder="https://github.com/user/repo" type="url" />
+              <form className="flex items-center space-x-2" action={decodeRepo}>
+                <Input className="flex-1" name="repoLink" placeholder="https://github.com/user/repo" type="url" />
                 <Button type="submit">Load Documentation</Button>
               </form>
             </div>
