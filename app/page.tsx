@@ -41,10 +41,8 @@ export default function Component() {
             </div>
             <img
               alt="Hero"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-              height="310"
-              src="/placeholder.svg"
-              width="550"
+              className="mx-auto overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
+              src="/hero.png"
             />
           </div>
         </div>
