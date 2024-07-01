@@ -6,6 +6,7 @@ import { getFileExtension, mapPrismLanguage } from "@/markdoc/nodes"
 import { parseMarkdown } from "@/markdoc/parseMarkdown"
 import React, { createContext, useContext, useEffect, useState } from "react"
 import { SelectedContext } from "./storyLayout";
+import { ScrollArea } from "./ui/scroll-area";
 
 export interface File {
     fileName: string;
@@ -30,30 +31,32 @@ export function StoryFiles({ files }: StoryFilesProps) {
 
     return (
         <div className="flex flex-col h-full">
-            <div className="flex border-x border-t">
+            <div className="flex border-x border-y block">
                 {files.map((file, index) => (
                     <Button
                         variant={selectedFileTab === file.fileName ? "secondary" : "outline"}
                         key={index}
                         onClick={() => setSelectedFileTab(file.fileName)}
-                        className={`rounded-none border-x border-y-0`}
+                        className={`rounded-none border-x-0 border-y-0`}
                     >
                         {file.fileName}
                     </Button>
                 ))}
             </div>
-            <div className="flex-grow">
-                {files.map((file, index) => (
-                    <div key={index} className={selectedFileTab === file.fileName ? "block h-full" : "hidden"}>
-                        <CodeBlock
-                            language={mapPrismLanguage(getFileExtension(file.fileName))}
-                            file={file.fileName}
-                        >
-                            {file.fileContent}
-                        </CodeBlock>
-                    </div>
-                ))}
-            </div>
+            {files.map((file, index) => (
+                <div key={index} className={
+                    selectedFileTab === file.fileName ?
+                        "h-full min-h-0 flex overflow-scroll border-x border-b" :
+                        "hidden"
+                }>
+                    <CodeBlock
+                        language={mapPrismLanguage(getFileExtension(file.fileName))}
+                        file={file.fileName}
+                    >
+                        {file.fileContent}
+                    </CodeBlock>
+                </div>
+            ))}
         </div>
     )
 }

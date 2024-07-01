@@ -10,6 +10,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 
 import { Highlight, themes } from 'prism-react-renderer';
@@ -20,7 +21,7 @@ interface CodeBlockProps {
     file: string;
 }
 
-export function CodeBlock({ children, language, file}: CodeBlockProps): JSX.Element {
+export function CodeBlock({ children, language, file }: CodeBlockProps): JSX.Element {
     const {
         selectedLine,
         selectedFile
@@ -33,32 +34,29 @@ export function CodeBlock({ children, language, file}: CodeBlockProps): JSX.Elem
     }, [theme]);
 
     return (
-        <Card className="m-0 p-0 h-full w-full rounded-none">
-            <CardContent className="m-0 p-0 h-full">
-                <div className="code w-full h-full overflow-scroll	" aria-live="polite">
-                    <pre className={`language-${language}`}>
-                        <Highlight
-                            theme={themeUsed === 'light' ? themes.github : themes.okaidia}
-                            code={children?.toString().trim() ?? ""}
-                            language={language}
-                        >
-                            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                                <pre className="h-full p-2 rounded-none">
-                                    {tokens.map((line, i) => (
-                                        <div key={i} {...getLineProps({ line })} 
-                                        className={ selectedLine.includes(i + 1) && selectedFile === file ? highlightColor : ""}>
-                                            <span className={`select-none m-4`}>{i + 1}</span>
-                                            {line.map((token, key) => (
-                                                <span key={key} {...getTokenProps({ token })} />
-                                            ))}
-                                        </div>
+        <div className={cn("code w-full")} aria-live="polite">
+            <pre className={cn(`language-${language}`, '')}>
+                <Highlight
+                    theme={themeUsed === 'light' ? themes.github : themes.okaidia}
+                    code={children?.toString().trim() ?? ""}
+                    language={language}
+                >
+                    {({ className, style, tokens, getLineProps, getTokenProps }) => (
+                        <pre className={cn("p-2 rounded-none")}>
+                            {tokens.map((line, i) => (
+                                <div key={i} {...getLineProps({ line })}
+                                    className={cn(selectedLine.includes(i + 1) && selectedFile === file ? highlightColor : "")}>
+                                    <span className={cn(`select-none m-4`)}>{i + 1}</span>
+                                    {line.map((token, key) => (
+                                        <span key={key} {...getTokenProps({ token })} />
                                     ))}
-                                </pre>
-                            )}
-                        </Highlight>
-                    </pre>
-                </div>
-            </CardContent>
-        </Card>
+                                </div>
+                            ))}
+                        </pre>
+                    )}
+                </Highlight>
+            </pre>
+        </div>
+
     );
 }

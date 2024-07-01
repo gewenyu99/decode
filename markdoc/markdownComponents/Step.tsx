@@ -25,8 +25,14 @@ export function Step({ children, lines, file }: { children: React.ReactNode; lin
         setSelectedFile(file);
         setSelectedLine(parsedLines);
     };
+
+    const handleMouseLeave = () => {
+        const parsedLines = [] as number[];
+        setSelectedLine(parsedLines);
+    };
+
     return (
-        <div className="step" onMouseOver={handleMouseOver}>
+        <div className="step" onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
             {children}
         </div>
     )
